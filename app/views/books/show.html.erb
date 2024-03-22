@@ -1,0 +1,33 @@
+  <%= render 'books/error', obj: @book %>
+<div class="row">
+  <div class="col-md-3">
+  <%= render 'books/info', user: @user %>
+  <%= render 'books/list', book: @new_book %>
+  </div>
+  <div class="col-md-8 offset-md-1">
+  <h1>Book detail</h1>
+    <table class="table table-hover table-inverse">
+      <tbody>
+        <tr>
+          <td><%= link_to user_path(@user) do %>
+              <%= image_tag @book.user.get_profile_image(80,80) %><br>
+              <%= @user.name %>
+              <% end %>
+          </td>
+          <td><%= @book.title %></td>
+          <td><%= @book.body %></td>
+          <td>
+            <% if @book.user == current_user %>
+              <%= link_to "Edit", edit_book_path(@book.id), class: "btn btn-sm btn-success" %>
+            <% end %>
+          </td>
+          <td>
+            <% if @book.user == current_user %>
+              <%= link_to "Destroy", book_path(@book), method: :delete, class: "btn btn-sm btn-danger", data:{confirm: "
+            Do you really want to delete？"} %>
+            <% end %>
+          </td>
+      </tbody>
+    </table>
+  </div>
+</div>
