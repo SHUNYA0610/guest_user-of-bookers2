@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   resources :books, only: [:create, :index, :show, :destroy, :edit, :update]
   
   resources :users, only: [:index, :show, :edit, :update]
+  
+  devise_scope :user do
+    post "users/guest_sign_in", to: "users/sessions#guest_sign_in"
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
